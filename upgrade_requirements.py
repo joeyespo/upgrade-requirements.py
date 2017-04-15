@@ -3,6 +3,11 @@ from __future__ import print_function, unicode_literals
 import io
 import subprocess
 
+try:
+    prompt = raw_input
+except NameError:
+    prompt = input
+
 
 def get_installed_requirement(entry):
     installed_name, installed_version = None, None
@@ -44,7 +49,7 @@ def main():
         upgrades.append(name)
 
     # Confirm
-    answer = raw_input('Upgrade {} requirements (y/N)? '.format(len(upgrades)))
+    answer = prompt('Upgrade {} requirements (y/N)? '.format(len(upgrades)))
     if answer != 'y':
         return
     print()
