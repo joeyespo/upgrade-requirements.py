@@ -33,7 +33,7 @@ def main():
     try:
         with io.open('requirements.txt') as f:
             print('Reading requirements...')
-            requirements = [r.strip() for r in f.readlines()]
+            requirements = [r.split('#', 1)[0].strip() for r in f.readlines()]
     except:
         print('Error: No requirements.txt found')
         return
