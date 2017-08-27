@@ -9,7 +9,7 @@ def read(filename):
 
 setup(
     name='upgrade-requirements',
-    version='1.4.0',
+    version='1.5.0',
     description='Upgrade all your outdated requirements in a single command.',
     long_description=read('README.md'),
     author='Joe Esposito',
