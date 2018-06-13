@@ -13,7 +13,7 @@ def get_installed_requirement(entry):
     installed_name, installed_version = None, None
 
     name = entry.split('[', 1)[0]
-    info = (subprocess.check_output(['pip', 'show', name])
+    info = (subprocess.check_output(['pip', 'show', name.strip()])
             .decode('utf-8', 'replace'))
     for line in info.split('\n'):
         line = line.strip()
