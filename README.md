@@ -1,6 +1,6 @@
 upgrade-requirements.py
 =======================
-[![Current version on PyPI](http://img.shields.io/pypi/v/upgrade-requirements.svg)](http://pypi.python.org/pypi/upgrade-requirements/)
+[![Current version on PyPI](https://img.shields.io/pypi/v/upgrade-requirements.svg)](https://pypi.python.org/pypi/upgrade-requirements/)
 
 Upgrade all your outdated `requirements.txt` in a single command.
 
