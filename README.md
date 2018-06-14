@@ -43,6 +43,20 @@ No worries!
 2. Run `pip install -r requirements.txt` to downgrade to working versions
 3. Commit the upgraded-and-tweaked `requirements.txt` like normal and carry on 🎉
 
+#### More usages
+```bash
+$ upgrade-requirements -h
+```
+
+```
+usage: upgrade-requirements [-h] [-r REQUIREMENTS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r REQUIREMENTS, --requirements REQUIREMENTS
+                        specify the location of the requirements.txt file
+```
+
 
 Room for improvement
 --------------------

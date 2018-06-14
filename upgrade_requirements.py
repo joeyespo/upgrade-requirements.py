@@ -1,5 +1,6 @@
 from __future__ import print_function, unicode_literals
 
+import argparse
 import io
 import subprocess
 
@@ -29,9 +30,15 @@ def get_installed_requirement(entry):
 
 
 def main():
+    # Set requirements file path
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-r', '--requirements', type=str, help='specify the location of the requirements.txt file')
+    args = parser.parse_args()
+    file_path = args.requirements or 'requirements.txt'  # set default file path
+
     # Read pinned requirements
     try:
-        with io.open('requirements.txt') as f:
+        with io.open(file_path) as f:
             print('Reading requirements...')
             requirements = [r.split('#', 1)[0].strip() for r in f.readlines()]
     except:
@@ -73,10 +80,10 @@ def main():
         result = '{}{}=={}\n'.format(result, installed_name, installed_version)
 
     # Save upgraded requirements
-    with io.open('requirements.txt', 'w') as f:
+    with io.open(file_path, 'w') as f:
         f.write(result)
 
-    print('Wrote requirements.txt')
+    print('Wrote {}'.format(file_path))
 
 
 if __name__ == '__main__':
