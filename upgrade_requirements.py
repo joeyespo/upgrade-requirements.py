@@ -1,13 +1,19 @@
 from __future__ import print_function, unicode_literals
 
-import argparse
 import io
 import subprocess
+from argparse import ArgumentParser
 
 try:
     prompt = raw_input
 except NameError:
     prompt = input
+
+
+parser = ArgumentParser()
+parser.add_argument(
+    '-r', '--requirements', type=str, default='requirements.txt',
+    help='Specify the location of the requirements.txt file')
 
 
 def get_installed_requirement(entry):
@@ -29,16 +35,12 @@ def get_installed_requirement(entry):
     return entry.replace(name, installed_name, 1), installed_version
 
 
-def main():
-    # Set requirements file path
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-r', '--requirements', type=str, help='specify the location of the requirements.txt file')
-    args = parser.parse_args()
-    file_path = args.requirements or 'requirements.txt'  # set default file path
+def main(args=None):
+    args = parser.parse_args(args)
 
     # Read pinned requirements
     try:
-        with io.open(file_path) as f:
+        with io.open(args.requirements) as f:
             print('Reading requirements...')
             requirements = [r.split('#', 1)[0].strip() for r in f.readlines()]
     except:
@@ -80,10 +82,10 @@ def main():
         result = '{}{}=={}\n'.format(result, installed_name, installed_version)
 
     # Save upgraded requirements
-    with io.open(file_path, 'w') as f:
+    with io.open(args.requirements, 'w') as f:
         f.write(result)
 
-    print('Wrote {}'.format(file_path))
+    print('Wrote {}'.format(args.requirements))
 
 
 if __name__ == '__main__':
