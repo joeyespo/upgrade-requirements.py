@@ -58,6 +58,11 @@ def main(args=None):
         name, version = requirement.split('==')
         upgrades.append(name)
 
+    # Edge case
+    if len(upgrades) == 0:
+        print('No requirements to upgrade')
+        return
+
     # Confirm
     answer = prompt('Upgrade {} requirements (y/N)? '.format(len(upgrades)))
     if answer != 'y':
