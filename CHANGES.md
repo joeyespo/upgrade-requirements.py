@@ -2,6 +2,12 @@ upgrade-requirements.py Changelog
 ---------------------------------
 
 
+#### Version 1.7.0 (2018-06-15)
+
+- Enhancement:  ([#5](https://github.com/joeyespo/grip/pull/5) - thanks, [@ldsink][]!)
+- Enhancement: Handle "No requirements to upgrade" edge case
+
+
 #### Version 1.6.0 (2018-06-13)
 
 - Enhancement: Handle spaces around requirements package names ([#4](https://github.com/joeyespo/grip/pull/4) - thanks, [@ldsink][]!)
