@@ -41,7 +41,7 @@ def main(args=None):
     # Read pinned requirements
     try:
         with io.open(args.requirements) as f:
-            print('Reading requirements...')
+            print('Reading {}...'.format(args.requirements))
             requirements = [r.split('#', 1)[0].strip() for r in f.readlines()]
     except:
         print('Error: No requirements.txt found')
