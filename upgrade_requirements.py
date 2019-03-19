@@ -14,6 +14,10 @@ parser = ArgumentParser()
 parser.add_argument(
     '-r', '--requirements', type=str, default='requirements.txt',
     help='Specify the location of the requirements.txt file')
+parser.add_argument(
+    '-y', '--yes', action='store_true',
+    help='Apply changes without asking for confirmation')
+
 
 
 def get_installed_requirement(entry):
@@ -37,6 +41,7 @@ def get_installed_requirement(entry):
 
 def main(args=None):
     args = parser.parse_args(args)
+    interactive = not args.yes
 
     # Read pinned requirements
     try:
@@ -63,10 +68,12 @@ def main(args=None):
         print('No requirements to upgrade')
         return
 
-    # Confirm
-    answer = prompt('Upgrade {} requirements (y/N)? '.format(len(upgrades)))
-    if answer != 'y':
-        return
+    if interactive:
+        # Confirm
+        answer = prompt('Upgrade {} requirements (y/N)? '.format(len(upgrades)))
+        if answer != 'y':
+            return
+
     print()
 
     # Run 'pip install --upgrade' on all requirements
